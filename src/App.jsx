@@ -1,0 +1,543 @@
+import { useState, useEffect } from "react";
+ import music from "./assets/music.mp3";
+const floatingEmojis = ["🌸", "💕", "✨", "🌺", "💗", "🦋", "🌷", "💖", "🍀", "⭐", "🌼", "💝"];
+ 
+function FloatingEmoji({ emoji, style }) {
+  const audioRef = useRef(null);
+  return (
+    
+    <div style={{
+      position: "fixed", fontSize: style.size, left: style.left, top: "-60px",
+      animation: `floatDown ${style.duration}s linear ${style.delay}s infinite`,
+      opacity: 0.7, pointerEvents: "none", zIndex: 0, userSelect: "none",
+    }}>{emoji}</div>
+  );
+}
+<audio controls autoPlay loop style={{ position: "fixed", bottom: 10, right: 10 }}>
+  <source src={music} type="audio/mpeg" />
+</audio>
+
+ 
+// Dudu - blue bear (boy)
+function Dudu({ size = 90, expression = "sad", animate = true }) {
+  return (
+    <svg width={size} height={size} viewBox="0 0 100 108" style={{
+      display: "inline-block",
+      animation: animate ? "bearBob 2s ease-in-out infinite" : "none",
+      filter: "drop-shadow(0 4px 8px rgba(70,130,200,0.25))",
+    }}>
+      <ellipse cx="22" cy="30" rx="14" ry="14" fill="#5b8dd9" />
+      <ellipse cx="22" cy="30" rx="8" ry="8" fill="#7baee8" />
+      <ellipse cx="78" cy="30" rx="14" ry="14" fill="#5b8dd9" />
+      <ellipse cx="78" cy="30" rx="8" ry="8" fill="#7baee8" />
+      <ellipse cx="50" cy="52" rx="38" ry="36" fill="#5b8dd9" />
+      <ellipse cx="35" cy="38" rx="10" ry="7" fill="rgba(255,255,255,0.18)" transform="rotate(-20,35,38)" />
+      <ellipse cx="50" cy="65" rx="16" ry="11" fill="#7baee8" />
+      <ellipse cx="50" cy="63" rx="5" ry="3.5" fill="#3a6bb5" />
+      {(expression === "happy" || expression === "love") ? (
+        <>
+          <path d="M32 50 Q36 44 40 50" stroke="#1a3a6b" strokeWidth="3" fill="none" strokeLinecap="round"/>
+          <path d="M60 50 Q64 44 68 50" stroke="#1a3a6b" strokeWidth="3" fill="none" strokeLinecap="round"/>
+          <path d="M42 70 Q50 77 58 70" stroke="#1a3a6b" strokeWidth="2.5" fill="none" strokeLinecap="round"/>
+          <ellipse cx="28" cy="60" rx="7" ry="4" fill="rgba(100,170,255,0.35)" />
+          <ellipse cx="72" cy="60" rx="7" ry="4" fill="rgba(100,170,255,0.35)" />
+        </>
+      ) : (
+        <>
+          <ellipse cx="36" cy="50" rx="5" ry="5.5" fill="#1a3a6b" />
+          <ellipse cx="64" cy="50" rx="5" ry="5.5" fill="#1a3a6b" />
+          <ellipse cx="37.5" cy="48.5" rx="2" ry="2" fill="white" />
+          <ellipse cx="65.5" cy="48.5" rx="2" ry="2" fill="white" />
+          <path d="M28 42 Q36 38 41 43" stroke="#1a3a6b" strokeWidth="2.5" fill="none" strokeLinecap="round"/>
+          <path d="M59 43 Q64 38 72 42" stroke="#1a3a6b" strokeWidth="2.5" fill="none" strokeLinecap="round"/>
+          <path d="M42 72 Q50 67 58 72" stroke="#1a3a6b" strokeWidth="2.5" fill="none" strokeLinecap="round"/>
+          <ellipse cx="33" cy="57" rx="2.5" ry="4" fill="#a8d0ff" opacity="0.85" />
+          <ellipse cx="67" cy="57" rx="2.5" ry="4" fill="#a8d0ff" opacity="0.85" />
+        </>
+      )}
+      {expression === "love" && (
+        <>
+          <text x="29" y="54" fontSize="13" textAnchor="middle">💙</text>
+          <text x="67" y="54" fontSize="13" textAnchor="middle">💙</text>
+        </>
+      )}
+    </svg>
+  );
+}
+ 
+// Bubu - pink bear (girl)
+function Bubu({ size = 90, expression = "sad", animate = true }) {
+  return (
+    <svg width={size} height={size} viewBox="0 0 100 118" style={{
+      display: "inline-block",
+      animation: animate ? "bearBob 2.3s ease-in-out infinite 0.4s" : "none",
+      filter: "drop-shadow(0 4px 8px rgba(220,100,150,0.25))",
+    }}>
+      {/* Bow */}
+      <path d="M38 20 Q44 11 50 20 Q44 29 38 20Z" fill="#ff6b9d" />
+      <path d="M62 20 Q56 11 50 20 Q56 29 62 20Z" fill="#ff6b9d" />
+      <circle cx="50" cy="20" r="5.5" fill="#ff8fab" />
+      {/* Ears */}
+      <ellipse cx="22" cy="35" rx="14" ry="14" fill="#f48fb1" />
+      <ellipse cx="22" cy="35" rx="8" ry="8" fill="#f8bbd9" />
+      <ellipse cx="78" cy="35" rx="14" ry="14" fill="#f48fb1" />
+      <ellipse cx="78" cy="35" rx="8" ry="8" fill="#f8bbd9" />
+      {/* Head */}
+      <ellipse cx="50" cy="57" rx="38" ry="36" fill="#f48fb1" />
+      <ellipse cx="35" cy="43" rx="10" ry="7" fill="rgba(255,255,255,0.2)" transform="rotate(-20,35,43)" />
+      <ellipse cx="50" cy="70" rx="16" ry="11" fill="#f8bbd9" />
+      <ellipse cx="50" cy="68" rx="5" ry="3.5" fill="#c2185b" />
+      {(expression === "happy" || expression === "love") ? (
+        <>
+          <path d="M32 55 Q36 49 40 55" stroke="#880e4f" strokeWidth="3" fill="none" strokeLinecap="round"/>
+          <path d="M60 55 Q64 49 68 55" stroke="#880e4f" strokeWidth="3" fill="none" strokeLinecap="round"/>
+          <path d="M42 75 Q50 82 58 75" stroke="#880e4f" strokeWidth="2.5" fill="none" strokeLinecap="round"/>
+          <ellipse cx="28" cy="65" rx="7" ry="4" fill="rgba(255,100,150,0.32)" />
+          <ellipse cx="72" cy="65" rx="7" ry="4" fill="rgba(255,100,150,0.32)" />
+        </>
+      ) : (
+        <>
+          <ellipse cx="36" cy="55" rx="5" ry="5.5" fill="#880e4f" />
+          <ellipse cx="64" cy="55" rx="5" ry="5.5" fill="#880e4f" />
+          <ellipse cx="37.5" cy="53.5" rx="2" ry="2" fill="white" />
+          <ellipse cx="65.5" cy="53.5" rx="2" ry="2" fill="white" />
+          <path d="M28 47 Q36 43 41 48" stroke="#880e4f" strokeWidth="2.5" fill="none" strokeLinecap="round"/>
+          <path d="M59 48 Q64 43 72 47" stroke="#880e4f" strokeWidth="2.5" fill="none" strokeLinecap="round"/>
+          <path d="M42 77 Q50 72 58 77" stroke="#880e4f" strokeWidth="2.5" fill="none" strokeLinecap="round"/>
+          <ellipse cx="33" cy="62" rx="2.5" ry="4" fill="#ffb3d1" opacity="0.9" />
+          <ellipse cx="67" cy="62" rx="2.5" ry="4" fill="#ffb3d1" opacity="0.9" />
+        </>
+      )}
+      {expression === "love" && (
+        <>
+          <text x="29" y="59" fontSize="13" textAnchor="middle">💗</text>
+          <text x="67" y="59" fontSize="13" textAnchor="middle">💗</text>
+        </>
+      )}
+    </svg>
+  );
+}
+ 
+const sorryMessages = [
+  { emoji: "😔", text: "Dudu is so sorry for hurting Bubu. You didn't deserve that at all 🐾" },
+  { emoji: "💔", text: "Dudu's heart aches knowing he made Bubu sad. Forgive me, my love? 🌸" },
+  { emoji: "🥺", text: "Dudu was wrong, and he knows it. Bubu means everything to him 💝" },
+  { emoji: "🌸", text: "Every moment without Bubu's smile feels empty. Dudu is truly sorry 🐻" },
+  { emoji: "💝", text: "Bubu is Dudu's sunshine, and he never wants to be your storm again ☀️" },
+];
+ 
+export default function SorryPage() {
+  const [revealed, setRevealed] = useState(false);
+  const [hearts, setHearts] = useState([]);
+  const [floaters, setFloaters] = useState([]);
+  const [currentMsg, setCurrentMsg] = useState(0);
+  const [forgiven, setForgiven] = useState(false);
+  const [noCount, setNoCount] = useState(0);
+ 
+  useEffect(() => {
+    const items = Array.from({ length: 18 }, (_, i) => ({
+      id: i,
+      emoji: floatingEmojis[i % floatingEmojis.length],
+      style: {
+        left: `${Math.random() * 100}%`,
+        size: `${1.2 + Math.random() * 1.6}rem`,
+        duration: 6 + Math.random() * 8,
+        delay: Math.random() * 10,
+      },
+    }));
+    setFloaters(items);
+  }, []);
+ 
+  useEffect(() => {
+    const interval = setInterval(() => setCurrentMsg((p) => (p + 1) % sorryMessages.length), 3200);
+    return () => clearInterval(interval);
+  }, []);
+ 
+  const burstHearts = () => {
+    const newHearts = Array.from({ length: 22 }, (_, i) => ({
+      id: Date.now() + i,
+      x: 30 + Math.random() * 40,
+      y: 40 + Math.random() * 20,
+      dx: (Math.random() - 0.5) * 250,
+      dy: -(90 + Math.random() * 140),
+      emoji: ["💖","💕","💗","💝","🌸","🐾"][Math.floor(Math.random() * 6)],
+      size: 1.2 + Math.random() * 1.4,
+    }));
+    setHearts((h) => [...h, ...newHearts]);
+    setTimeout(() => setHearts((h) => h.filter((x) => !newHearts.find((n) => n.id === x.id))), 1600);
+  };
+ 
+  const noMessages = [
+    "Please Bubu? 🥺", "Are you sure? 💔", "Dudu is crying... 😢",
+    "I'll do anything! 🙏", "Pretty please? 🌸", "Dudu loves you so much! 💝", "One more chance? 🥺💕",
+  ];
+ 
+  const handleNo = () => setNoCount((c) => c + 1);
+  const handleYes = () => { burstHearts(); setForgiven(true); };
+ 
+  const noLabel = noCount === 0 ? "No 😞" : noMessages[Math.min(noCount - 1, noMessages.length - 1)];
+  const noScale = Math.max(0.3, 1 - noCount * 0.12);
+  const yesScale = Math.min(1.55, 1 + noCount * 0.12);
+ 
+  return (
+    <>
+      <style>{`
+        @import url('https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800&family=Playfair+Display:ital,wght@0,700;1,400&display=swap');
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body {
+          background: linear-gradient(155deg, #fff0f8 0%, #f0f5ff 50%, #fff4f0 100%);
+          min-height: 100vh;
+          font-family: 'Nunito', sans-serif;
+          overflow-x: hidden;
+        }
+ 
+        @keyframes floatDown {
+          0% { transform: translateY(0) rotate(0deg); opacity: 0; }
+          10% { opacity: 0.7; }
+          90% { opacity: 0.5; }
+          100% { transform: translateY(110vh) rotate(360deg); opacity: 0; }
+        }
+        @keyframes heartBurst {
+          0% { transform: translate(0,0) scale(1); opacity: 1; }
+          100% { transform: translate(var(--dx), var(--dy)) scale(0); opacity: 0; }
+        }
+        @keyframes fadeIn {
+          from { opacity: 0; transform: translateY(22px); }
+          to { opacity: 1; transform: translateY(0); }
+        }
+        @keyframes pulse {
+          0%, 100% { transform: scale(1); }
+          50% { transform: scale(1.06); }
+        }
+        @keyframes shimmer {
+          0% { background-position: -200% center; }
+          100% { background-position: 200% center; }
+        }
+        @keyframes msgSlide {
+          0% { opacity: 0; transform: translateY(8px); }
+          12% { opacity: 1; transform: translateY(0); }
+          82% { opacity: 1; transform: translateY(0); }
+          100% { opacity: 0; transform: translateY(-8px); }
+        }
+        @keyframes bearBob {
+          0%, 100% { transform: translateY(0) rotate(-1.5deg); }
+          50% { transform: translateY(-11px) rotate(1.5deg); }
+        }
+        @keyframes sparkle {
+          0%, 100% { opacity: 0.3; transform: scale(0.8) rotate(0deg); }
+          50% { opacity: 1; transform: scale(1.2) rotate(180deg); }
+        }
+        @keyframes forgiveFloat {
+          0% { transform: scale(0) rotate(-12deg); opacity: 0; }
+          60% { transform: scale(1.1) rotate(2deg); opacity: 1; }
+          100% { transform: scale(1) rotate(0deg); opacity: 1; }
+        }
+        @keyframes heartPop {
+          0% { transform: scale(0); opacity: 0; }
+          60% { transform: scale(1.3); opacity: 1; }
+          100% { transform: scale(1); opacity: 1; }
+        }
+ 
+        .card {
+          background: rgba(255,255,255,0.9);
+          backdrop-filter: blur(20px);
+          border-radius: 32px;
+          border: 1.5px solid rgba(255,180,210,0.45);
+          box-shadow: 0 10px 50px rgba(255,105,135,0.13), 0 2px 12px rgba(255,150,185,0.1);
+          padding: 34px 34px 36px;
+          max-width: 460px;
+          width: 92%;
+          position: relative;
+          z-index: 2;
+          animation: fadeIn 0.8s ease both;
+        }
+        .title {
+          font-family: 'Playfair Display', serif;
+          font-size: 2.3rem;
+          font-weight: 700;
+          background: linear-gradient(135deg, #e75480, #ff8fab, #c96db5, #e75480);
+          background-size: 250% auto;
+          -webkit-background-clip: text;
+          -webkit-text-fill-color: transparent;
+          background-clip: text;
+          animation: shimmer 3s linear infinite;
+          line-height: 1.2;
+          text-align: center;
+        }
+        .bear-row {
+          display: flex;
+          justify-content: center;
+          align-items: flex-end;
+          gap: 8px;
+          margin: 14px 0 8px;
+        }
+        .bear-label {
+          font-size: 0.7rem;
+          font-weight: 800;
+          letter-spacing: 1.5px;
+          text-transform: uppercase;
+          text-align: center;
+          display: block;
+          margin-top: -2px;
+        }
+        .msg-box {
+          background: linear-gradient(135deg, #fff4f8, #ffe8f3);
+          border: 1px solid rgba(231,84,128,0.18);
+          border-radius: 18px;
+          padding: 15px 20px;
+          min-height: 68px;
+          display: flex;
+          align-items: center;
+          gap: 12px;
+          margin: 14px 0;
+          animation: msgSlide 3.2s ease infinite;
+        }
+        .msg-emoji { font-size: 1.8rem; flex-shrink: 0; }
+        .msg-text {
+          font-size: 0.91rem;
+          color: #b03060;
+          font-style: italic;
+          font-family: 'Playfair Display', serif;
+          line-height: 1.55;
+        }
+        .divider {
+          height: 1px;
+          background: linear-gradient(90deg, transparent, rgba(231,84,128,0.3), transparent);
+          margin: 16px 0;
+        }
+        .question {
+          font-size: 1.2rem;
+          font-weight: 800;
+          color: #c0396a;
+          text-align: center;
+          margin-bottom: 18px;
+        }
+        .btn-row {
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          gap: 18px;
+        }
+        .btn-yes {
+          background: linear-gradient(135deg, #e75480, #ff6b9d);
+          color: white;
+          border: none;
+          border-radius: 50px;
+          padding: 13px 32px;
+          font-size: 1.03rem;
+          font-family: 'Nunito', sans-serif;
+          font-weight: 800;
+          cursor: pointer;
+          box-shadow: 0 4px 18px rgba(231,84,128,0.38);
+          transition: box-shadow 0.2s;
+        }
+        .btn-yes:hover { box-shadow: 0 6px 26px rgba(231,84,128,0.52); }
+        .btn-no {
+          background: rgba(255,182,193,0.3);
+          color: #c0396a;
+          border: 1.5px solid rgba(231,84,128,0.28);
+          border-radius: 50px;
+          padding: 11px 24px;
+          font-size: 0.94rem;
+          font-family: 'Nunito', sans-serif;
+          font-weight: 700;
+          cursor: pointer;
+        }
+        .sparkle-row { display: flex; justify-content: center; gap: 8px; margin-bottom: 12px; }
+        .sparkle-item { font-size: 1.2rem; animation: sparkle 1.8s ease-in-out infinite; }
+        .sparkle-item:nth-child(2) { animation-delay: 0.3s; }
+        .sparkle-item:nth-child(3) { animation-delay: 0.6s; }
+        .sparkle-item:nth-child(4) { animation-delay: 0.9s; }
+        .sparkle-item:nth-child(5) { animation-delay: 1.2s; }
+        .forgiven-card { animation: forgiveFloat 0.85s cubic-bezier(0.34,1.56,0.64,1) both; }
+        .intro-btn {
+          background: linear-gradient(135deg, #e75480, #ff8fab);
+          color: white;
+          border: none;
+          border-radius: 50px;
+          padding: 15px 40px;
+          font-size: 1.05rem;
+          font-family: 'Nunito', sans-serif;
+          font-weight: 800;
+          cursor: pointer;
+          box-shadow: 0 4px 20px rgba(231,84,128,0.38);
+          animation: pulse 2.2s ease-in-out infinite;
+          margin-top: 8px;
+        }
+        .tag-blue { color: #5b8dd9; }
+        .tag-pink { color: #f48fb1; }
+      `}</style>
+ 
+      {floaters.map((f) => <FloatingEmoji key={f.id} emoji={f.emoji} style={f.style} />)}
+ 
+      {hearts.map((h) => (
+        <div key={h.id} style={{
+          position: "fixed", left: `${h.x}%`, top: `${h.y}%`,
+          fontSize: `${h.size}rem`,
+          "--dx": `${h.dx}px`, "--dy": `${h.dy}px`,
+          animation: "heartBurst 1.4s ease-out forwards",
+          pointerEvents: "none", zIndex: 100,
+        }}>{h.emoji}</div>
+      ))}
+ 
+      <div style={{
+        minHeight: "100vh", display: "flex", alignItems: "center",
+        justifyContent: "center", position: "relative", padding: "40px 16px",
+      }}>
+ 
+        {/* ── INTRO ── */}
+        {!revealed ? (
+          <div className="card" style={{ textAlign: "center" }}>
+            <div className="sparkle-row">
+              {["✨","🌸","💖","🌸","✨"].map((e,i)=><span key={i} className="sparkle-item">{e}</span>)}
+            </div>
+            <div className="title">A Message<br /><i style={{ fontWeight:400 }}>from Dudu 💌</i></div>
+ 
+            <div className="bear-row" style={{ marginTop:"16px" }}>
+              <div>
+                <Dudu size={84} expression="sorry" />
+                <span className="bear-label tag-blue">Dudu 🐾</span>
+              </div>
+              <div style={{ display:"flex",flexDirection:"column",alignItems:"center",gap:"6px",paddingBottom:"18px" }}>
+                <span style={{ fontSize:"2rem", animation:"heartPop 0.8s ease both" }}>💌</span>
+              </div>
+              <div>
+                <Bubu size={84} expression="sad" />
+                <span className="bear-label tag-pink">Bubu 🌸</span>
+              </div>
+            </div>
+ 
+            <p style={{
+              fontFamily:"'Playfair Display',serif", color:"#b03060",
+              fontSize:"0.96rem", lineHeight:1.75, fontStyle:"italic",
+              margin:"16px 0 22px", opacity:0.9,
+            }}>
+              Dudu did something wrong 😔<br />
+              and wants to tell Bubu something<br />
+              very important... 🥺💕
+            </p>
+            <button className="intro-btn" onClick={() => setRevealed(true)}>
+              Open Dudu's Heart 💝
+            </button>
+          </div>
+ 
+        /* ── FORGIVEN ── */
+        ) : forgiven ? (
+          <div className="card forgiven-card" style={{ textAlign:"center" }}>
+            <div className="sparkle-row">
+              {["💕","🐾","✨","🐾","💕"].map((e,i)=><span key={i} className="sparkle-item">{e}</span>)}
+            </div>
+            <div className="title" style={{ fontSize:"2rem" }}>Bubu Said Yes! 🥰</div>
+ 
+            <div className="bear-row" style={{ marginTop:"14px" }}>
+              <div>
+                <Dudu size={86} expression="love" />
+                <span className="bear-label tag-blue">Dudu 💙</span>
+              </div>
+              <div style={{ display:"flex",flexDirection:"column",alignItems:"center",gap:"5px",paddingBottom:"16px" }}>
+                <span style={{ fontSize:"2.2rem",animation:"heartPop 0.5s ease both" }}>💖</span>
+                <span style={{ fontSize:"1.6rem",animation:"heartPop 0.7s ease 0.15s both" }}>🌸</span>
+                <span style={{ fontSize:"1.2rem",animation:"heartPop 0.9s ease 0.3s both" }}>✨</span>
+              </div>
+              <div>
+                <Bubu size={86} expression="love" />
+                <span className="bear-label tag-pink">Bubu 💗</span>
+              </div>
+            </div>
+ 
+            <div className="divider" />
+            <p style={{
+              fontFamily:"'Playfair Display',serif", fontSize:"1rem",
+              color:"#c0396a", fontStyle:"italic", lineHeight:1.75,
+            }}>
+              Dudu promises to always make Bubu smile 🌸<br />
+              You are my whole world, forever and always 💝
+            </p>
+            <div style={{ display:"flex",justifyContent:"center",gap:"10px",fontSize:"2rem",marginTop:"16px" }}>
+              {["💖","🐾","🌷","🐾","💝"].map((e,i)=>(
+                <span key={i} style={{
+                  display:"inline-block",
+                  animation:`bearBob ${1.4+i*0.2}s ease-in-out infinite`,
+                  animationDelay:`${i*0.15}s`,
+                }}>{e}</span>
+              ))}
+            </div>
+          </div>
+ 
+        /* ── SORRY ── */
+        ) : (
+          <div className="card">
+            <div className="sparkle-row">
+              {["💕","🌸","✨","🌸","💕"].map((e,i)=><span key={i} className="sparkle-item">{e}</span>)}
+            </div>
+            <div className="title">Dudu is So<br /><i>Sorry, Bubu</i> 🥺</div>
+ 
+            <div className="bear-row">
+              <div style={{ textAlign:"center" }}>
+                <Dudu size={80} expression="sad" />
+                <span className="bear-label tag-blue">Dudu 😢</span>
+              </div>
+              <div style={{ display:"flex",flexDirection:"column",alignItems:"center",gap:"5px",paddingBottom:"16px" }}>
+                <span style={{ fontSize:"1.6rem" }}>💔</span>
+                <span style={{ fontSize:"1rem" }}>😔</span>
+              </div>
+              <div style={{ textAlign:"center" }}>
+                <Bubu size={80} expression="sad" />
+                <span className="bear-label tag-pink">Bubu 🌧️</span>
+              </div>
+            </div>
+ 
+            <div className="msg-box">
+              <span className="msg-emoji">{sorryMessages[currentMsg].emoji}</span>
+              <span className="msg-text">{sorryMessages[currentMsg].text}</span>
+            </div>
+ 
+            <p style={{
+              fontSize:"0.89rem", color:"#c0396a", lineHeight:1.8,
+              opacity:0.88, textAlign:"center", padding:"0 4px",
+            }}>
+              Dudu knows he messed up 😔 and hates that he hurt Bubu 💔<br />
+              Bubu is the most precious bear in Dudu's whole world 🌎<br />
+              and losing Bubu's smile is Dudu's biggest regret 🐾
+            </p>
+ 
+            <div className="divider" />
+            <div className="question">Will Bubu forgive Dudu? 🌸🐾</div>
+ 
+            <div className="btn-row">
+              <button
+                className="btn-yes"
+                style={{ transform:`scale(${yesScale})` }}
+                onClick={handleYes}
+              >
+                Yes Dudu! 💖
+              </button>
+              <button
+                className="btn-no"
+                style={{ transform:`scale(${noScale})`, fontSize:`${Math.max(0.6,0.94-noCount*0.07)}rem` }}
+                onClick={handleNo}
+              >
+                {noLabel}
+              </button>
+            </div>
+ 
+            {noCount > 0 && (
+              <div style={{ textAlign:"center", marginTop:"14px", animation:"fadeIn 0.4s ease" }}>
+                <Dudu size={50} expression="sad" animate={false} />
+                <p style={{
+                  fontSize:"0.85rem", fontStyle:"italic", color:"#e75480",
+                  fontFamily:"'Playfair Display',serif", marginTop:"6px",
+                }}>
+                  {noCount === 1 && "Dudu will keep asking forever 🥺💕"}
+                  {noCount === 2 && "Without Bubu, nothing feels right 💔🐾"}
+                  {noCount === 3 && "Bubu is Dudu's entire world 🌸✨"}
+                  {noCount >= 4 && "Dudu loves Bubu more than all the stars 🌟💖🐻"}
+                </p>
+              </div>
+            )}
+          </div>
+        )}
+      </div>
+    </>
+  );
+}
